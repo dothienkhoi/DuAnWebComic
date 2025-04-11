@@ -7,8 +7,8 @@ namespace WebsiteBanHang.Pages
 {
     public class DisplayProductsBase : ComponentBase
     {
-        [Inject]
-        public IProductService ProductService { get; set; }
+        //[Inject]
+        //public IProductService ProductService { get; set; }
         [Parameter]
         public IEnumerable<ProductDto> Products { get; set; }
         //protected override async Task OnInitializedAsync()
