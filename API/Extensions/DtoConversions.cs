@@ -24,5 +24,37 @@ namespace API.Extensions
                         
                     }).ToList();
         }
+
+        public static ProductDto ConvertToDto(this Product product, ProductCategory productCategory)
+        {
+            //return (from product in products
+            //        join productCategory in productCategories
+            //        on product.CategoryId equals productCategory.Id
+            //        select new ProductDto
+            //        {
+            //            Id = product.Id,
+            //            Name = product.Name,
+            //            Description = product.Description,
+            //            ImageUrl = product.ImageUrl,
+            //            Price = product.Price,
+            //            Qty = product.Qty,
+            //            CategoryId = product.CategoryId,
+            //            CategoryName = productCategory.Name
+
+            //        }).ToList();
+            return new ProductDto
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Description = product.Description,
+                ImageUrl = product.ImageUrl,
+                Price = product.Price,
+                Qty = product.Qty,
+                CategoryId = product.CategoryId,
+                CategoryName = productCategory.Name
+            };
+        }
     }
+
+
 }

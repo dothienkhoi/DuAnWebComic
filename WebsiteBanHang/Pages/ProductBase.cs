@@ -13,5 +13,13 @@ namespace WebsiteBanHang.Pages
         {
             Products = await ProductService.GetItems();
         }
+
+        protected IOrderedEnumerable<IGrouping<int, ProductDto>> GetGroupedProductsByCategory()
+        {
+            return from product in Products
+                   group product by product.CategoryId into productByCategory
+                   orderby productByCategory.Key
+                   select productByCategory;
+        }
     }
 }

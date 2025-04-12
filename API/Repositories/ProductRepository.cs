@@ -17,15 +17,17 @@ namespace API.Repositories.Contracts
             return categories;
         }
 
-        public Task<ProductCategory> GetCategory(int id)
+        public async Task<ProductCategory> GetCategory(int id)
         {
-            throw new NotImplementedException();
+            var category = await _dbContext.ProductCategories.SingleOrDefaultAsync(i => i.Id == id);
+            return category;
         }
 
-        public Task<Product> GetItem(int id)
+        public async Task<Product> GetItem(int id)
         {
-            throw new NotImplementedException();
-        }
+            var products = await _dbContext.Products.FindAsync(id);
+            return products;
+        } 
 
         public async Task<IEnumerable<Product>> GetItems()
         {

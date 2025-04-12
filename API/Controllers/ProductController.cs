@@ -39,5 +39,31 @@ namespace API.Controllers
                     "Plaease try again later.");
             }
         }
+
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<ProductDto>> GetItem(int id)
+        {
+            try
+            {
+                var products = await _repository.GetItem(id);
+                
+                if (products == null)
+                {
+                    //return NotFound();
+                    return BadRequest();
+                }
+                else
+                {
+                    var productCategory = await _repository.GetCategory(products.CategoryId);
+                    var productDto = products.ConvertToDto(productCategory);
+                    return Ok(productDto);
+                }
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Plaease try again later.");
+            }
+        }
     }
 }
