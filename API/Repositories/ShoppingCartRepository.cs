@@ -51,20 +51,20 @@ namespace API.Repositories
             throw new NotImplementedException();
         }
 
-        //public async Task<CartItem> GetItem(int id)
-        //{
-        //    return await(from cart in _db.Carts
-        //                 join cartItem in _db.CartItems
-        //                 on cart.Id equals cartItem.CartId
-        //                 where cartItem.Id == id
-        //                 select new CartItem
-        //                 {
-        //                     Id = cartItem.Id,
-        //                     ProductId = cartItem.ProductId,
-        //                     Qty = cartItem.Qty,
-        //                     CartId = cartItem.CartId,
-        //                 }).SingleOrDefaultAsync();
-        //}
+        public async Task<CartItem> GetItem(int id)
+        {
+            return await (from cart in _db.Carts
+                          join cartItem in _db.CartItems
+                          on cart.Id equals cartItem.CartId
+                          where cartItem.Id == id
+                          select new CartItem
+                          {
+                              Id = cartItem.Id,
+                              ProductId = cartItem.ProductId,
+                              Qty = cartItem.Qty,
+                              CartId = cartItem.CartId,
+                          }).SingleOrDefaultAsync();
+        }
 
         public async Task<IEnumerable<CartItem>> GetItems(int userId)
         {
